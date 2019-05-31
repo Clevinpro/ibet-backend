@@ -19,7 +19,7 @@
     .catch((err)=>{console.log(err)})
 ```
 
-### Signip
+### Signup
 
 ```
 fetch('http://localhost:8080/api/auth/signup',
