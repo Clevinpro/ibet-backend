@@ -41,23 +41,26 @@ apiRoutes
   .get('/auth/logout', logout)
   .get('/auth/current', currentUser)
   
+  
+  .get('/bets', getBets)
   .use(verifyToken)
   
   .get('/users', getUsers)
   .get('/users/:id', getUser)
   .put('/users/:id', updateUser)
   .delete('/users/:id', deleteUser)
-
-  .post('/bet', createBet)
-  .get('/bet', getBets)
-  .get('/bet/:id', getBet)
-  .put('/bet/:id', updateBet)
-  .delete('/bet/:id', deleteBet)
+  
+  .post('/bets', createBet)
+  .get('/bets/:id', getBet)
+  .put('/bets/:id', updateBet)
+  .delete('/bets/:id', deleteBet)
 
   .post('/orders', createOrder)
   .get('/orders', getOrders)
   .get('/orders/:id', getOrder)
   .put('/orders/:id', updateOrder)
+
+
   .delete('/orders/:id', deleteOrder)
 
   .post('/comments', createComment)

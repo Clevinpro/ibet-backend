@@ -18,7 +18,7 @@ const startServer = port => {
     .use(bodyParser.urlencoded({ extended: false }))
     .use(bodyParser.json())
     .use(morgan('dev'))
-    .use('/', routes)
+    .use('/api', routes)
     .use(errorHandler);
 
   app.listen(port);
