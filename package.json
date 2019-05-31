@@ -1,0 +1,32 @@
+{
+  "name": "food-delivery-server-goit",
+  "version": "1.0.0",
+  "description": "food-delivery-server-goit",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "debug": "nodemon --inspect index.js"
+  },
+  "author": "ibet backend",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.4",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "jsonwebtoken": "^8.5.0",
+    "mongo": "^0.1.0",
+    "mongodb": "^3.1.13",
+    "mongoose": "^5.4.17",
+    "mongoose-unique-validator": "^2.0.2",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.1",
+    "nodemon": "^1.18.9",
+    "uuid": "^3.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}

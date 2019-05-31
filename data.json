@@ -1,0 +1,7 @@
+{
+    "driver": true,
+    "name": "MongoError",
+    "index": 0,
+    "code": 11000,
+    "errmsg": "E11000 duplicate key error collection: ibet.users index: email_1 dup key: { : \"Nikolay@mail.com\" }"
+}
