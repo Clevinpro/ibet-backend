@@ -20,8 +20,8 @@ const currentUser = (req, response) => {
     if (user === null) {
       return response.json({ status: 'no user' });
     }
-    const { userName, points, activeBets, finishedBets } = user;
-    response.json({ status: 'success', user: { userName, points, activeBets, finishedBets } });
+    const { _id: id, userName, points, activeBets, finishedBets } = user;
+    response.json({ status: 'success', user: { id, userName, points, activeBets, finishedBets } });
   };
 
   const sendError = error => {

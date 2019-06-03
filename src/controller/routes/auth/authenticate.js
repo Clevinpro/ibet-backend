@@ -39,7 +39,7 @@ const authenticate = (req, res) => {
       return;
     }
 
-    const { _id: id } = user;
+    const { _id: id, userName, points, activeBets, finishedBets } = user;
 
     const payload = {
       id
@@ -50,7 +50,14 @@ const authenticate = (req, res) => {
     res.json({
       success: true,
       message: 'Enjoy your token!',
-      token: token
+      token: token,
+      user: {
+        id,
+        userName,
+        points,
+        activeBets,
+        finishedBets,
+      }
     });
   }
 };
