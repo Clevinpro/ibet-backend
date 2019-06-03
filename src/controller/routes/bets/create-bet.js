@@ -9,11 +9,17 @@ const createBet = (request, response) => {
 
   const sendResponse = bet => {
     console.log(bet);
-
-    response.json({
-      status: 'success',
-      bet
+    Bet.find()
+    // .populate('ingredients')
+    .exec(function(err, bets) {
+      console.log(err);
+      if (err) return sendError(err);
+      response.json({
+        status: 'success',
+        bets
+      });
     });
+    
   };
 
   const sendError = () => {

@@ -23,8 +23,11 @@ const createUser = (request, response) => {
 
     if (error && error.message && !error.code) {
       errMessage = error.message;
-    } else if (error && error.code && error.code === 11000) {
-      errMessage = 'User already exist';
+    } else if (error && error.code && error.code === 11000 && error.errmsg.includes('email')) {
+      errMessage = 'email already exist';
+    } else if (error && error.code && error.code === 11000 && error.errmsg.includes('userName')) {
+      console.log(JSON.stringify(error));
+      errMessage = 'userName already exist';
     }
     
     response.status(400);

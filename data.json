@@ -1,4 +1,5 @@
-{
+connection successful
+user err {
     "driver": true,
     "name": "MongoError",
     "index": 0,
