@@ -3,9 +3,12 @@ const User = require('../../../domain/db/schemas/user');
 const app = require('../../app/app');
 const bcrypt = require('bcrypt');
 
-const errorResp = {
-  success: false,
-  message: 'Authentication failed.'
+const errorUser = {
+  error: 'User in not defined'
+};
+
+const errorPassword = {
+  error: 'Password is invalid'
 };
 
 const passwMatches = (passw, hash) => bcrypt.compareSync(passw, hash);
@@ -29,13 +32,13 @@ const authenticate = (req, res) => {
     if (err) throw err;
 
     if (!user) {
-      res.json(errorResp);
+      res.json(errorUser);
       return;
     }
     const correctPassword = passwMatches(password, user.password);
 
     if (!correctPassword) {
-      res.json(errorResp);
+      res.json(errorPassword);
       return;
     }
 
