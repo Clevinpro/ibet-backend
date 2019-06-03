@@ -4,7 +4,7 @@ const timestamp = require('../middleware/timestamp');
 
 const userSchema = new Schema(
   {
-    userName: { type: String, required: true },
+    userName: { type: String, unique : true, required : true, dropDups: true},
     email: { type: String, unique : true, required : true, dropDups: true },
     password: { type: String, required: true },
     points: { type: Number, default: 1000 },

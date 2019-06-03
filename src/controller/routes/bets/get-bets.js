@@ -1,5 +1,5 @@
 const Bet = require('../../../domain/db/schemas/bet');
-const Ingredients = require('../../../domain/db/schemas/ingredients');
+// const Ingredients = require('../../../domain/db/schemas/ingredients');
 
 const getAllBets = (request, response) => {
   const query = request.query.categories;
@@ -21,7 +21,7 @@ const getAllBets = (request, response) => {
   };
 
   Bet.find()
-    .populate('ingredients')
+    // .populate('ingredients')
     .exec(function(err, bet) {
       console.log(err);
       if (err) return sendError(err);
