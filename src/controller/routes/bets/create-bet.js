@@ -15,7 +15,6 @@ const createBet = (request, response) => {
     // Bet.findOneAndUpdate({ _id: id }, bet, { new: true })
     User.findById(bet.userID).exec(function(err, user) {
       if (err) return sendError(err);
-      const newData = user;
       user.bets.push(bet._id);
       user.save();
     })
