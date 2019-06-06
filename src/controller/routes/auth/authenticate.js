@@ -26,7 +26,10 @@ const authenticate = (req, res) => {
 
   const userId = { email: email };
 
-  User.findOne(userId, onFind);
+  User.findOne(userId)
+  .populate('bets')
+  // .populate('history')
+  .exec(onFind);
 
   function onFind(err, user) {
     if (err) throw err;
@@ -42,7 +45,7 @@ const authenticate = (req, res) => {
       return;
     }
 
-    const { _id: id, userName, points, activeBets, finishedBets } = user;
+    const { _id: id, userName, points, bets, history } = user;
 
     const payload = {
       id
@@ -58,8 +61,8 @@ const authenticate = (req, res) => {
         id,
         userName,
         points,
-        activeBets,
-        finishedBets,
+        bets,
+        history,
       }
     });
   }

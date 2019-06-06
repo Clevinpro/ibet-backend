@@ -20,8 +20,8 @@ const currentUser = (req, response) => {
     if (user === null) {
       return response.json({ status: 'no user' });
     }
-    const { _id: id, userName, points, activeBets, finishedBets } = user;
-    response.json({ status: 'success', user: { id, userName, points, activeBets, finishedBets } });
+    const { _id: id, userName, points, bets, history } = user;
+    response.json({ status: 'success', user: { id, userName, points, bets, history } });
   };
 
   const sendError = error => {
@@ -32,6 +32,8 @@ const currentUser = (req, response) => {
   };
 
   User.findById(userId)
+    .populate('bets')
+    // .populate('history')
     .then(sendResponse)
     .catch(sendError);
 };

@@ -17,7 +17,7 @@ const deleteUser = require('./user/delete-user');
 const createBet = require('./bets/create-bet');
 const getBet = require('./bets/get-bet');
 const getBets = require('./bets/get-bets');
-const updateBet = require('./bets/update-bet');
+const applyBet = require('./bets/apply-bet');
 const deleteBet = require('./bets/delete-bet');
 
 const createOrder = require('./orders/create-order');
@@ -52,7 +52,7 @@ apiRoutes
   
   .post('/bets', createBet)
   .get('/bets/:id', getBet)
-  .put('/bets/:id', updateBet)
+  .put('/bets/apply/:id', applyBet)
   .delete('/bets/:id', deleteBet)
 
   .post('/orders', createOrder)

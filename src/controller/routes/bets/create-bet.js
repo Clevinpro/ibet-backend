@@ -1,7 +1,9 @@
 const Bet = require('../../../domain/db/schemas/bet');
+const User = require('../../../domain/db/schemas/user');
 
 const createBet = (request, response) => {
   const bet = request.body;
+  console.log('bet', bet);
 
   const betData = { ...bet };
 
@@ -9,6 +11,15 @@ const createBet = (request, response) => {
 
   const sendResponse = bet => {
     console.log(bet);
+    console.log('bet._id', bet._id);
+    // Bet.findOneAndUpdate({ _id: id }, bet, { new: true })
+    User.findById(bet.userID).exec(function(err, user) {
+      if (err) return sendError(err);
+      const newData = user;
+      user.bets.push(bet._id);
+      user.save();
+    })
+
     Bet.find()
     // .populate('ingredients')
     .exec(function(err, bets) {
@@ -22,7 +33,8 @@ const createBet = (request, response) => {
     
   };
 
-  const sendError = () => {
+  const sendError = (err) => {
+    console.log(JSON.stringify(err));
     response.status(400);
     response.json({
       error: 'bet was not saved'

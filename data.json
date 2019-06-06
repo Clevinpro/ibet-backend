@@ -1,8 +1,25 @@
-connection successful
-user err {
-    "driver": true,
-    "name": "MongoError",
-    "index": 0,
-    "code": 11000,
-    "errmsg": "E11000 duplicate key error collection: ibet.users index: email_1 dup key: { : \"Nikolay@mail.com\" }"
+{
+    "errors": {
+        "type": {
+            "message": "`` is not a valid enum value for path `type`.",
+            "name": "ValidatorError",
+            "properties": {
+                "message": "`` is not a valid enum value for path `type`.",
+                "type": "enum",
+                "enumValues": [
+                    "random",
+                    "222",
+                    "333"
+                ],
+                "path": "type",
+                "value": ""
+            },
+            "kind": "enum",
+            "path": "type",
+            "value": ""
+        }
+    },
+    "_message": "Bet validation failed",
+    "message": "Bet validation failed: type: `` is not a valid enum value for path `type`.",
+    "name": "ValidationError"
 }

@@ -8,13 +8,13 @@ const userSchema = new Schema(
     email: { type: String, unique : true, required : true, dropDups: true },
     password: { type: String, required: true },
     points: { type: Number, default: 1000 },
-    activeBets: [
+    bets: [
       {
         type: Schema.Types.ObjectId,
         ref: 'Bet'
       }
     ],
-    finishedBets: [
+    history: [
       {
         type: Schema.Types.ObjectId,
         ref: 'History'

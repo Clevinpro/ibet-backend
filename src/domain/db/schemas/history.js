@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const timestamp = require('../middleware/timestamp');
 
-const betSchema = new Schema(
+const historySchema = new Schema(
   {
     userID: {
       type: String,
@@ -12,12 +12,9 @@ const betSchema = new Schema(
       type: String,
       required: true
     },
-    partnerID: {
+    partner: {
       type: String,
-      ref: 'User'
-    },
-    partnerName: {
-      type: String,
+      required: true
     },
     points: {
       type: Number,
@@ -46,8 +43,8 @@ const betSchema = new Schema(
   }
 );
 
-betSchema.plugin(timestamp);
+historySchema.plugin(timestamp);
 
-const Bet = mongoose.model('Bet', betSchema);
+const history = mongoose.model('history', historySchema);
 
-module.exports = Bet;
+module.exports = history;
