@@ -29,6 +29,8 @@ const deleteOrder = require('./orders/delete-order');
 const createComment = require('./comments/create-comments');
 const getComments = require('./comments/get-comments');
 
+const submitForm = require('./user/submit-form');
+
 const apiRoutes = express.Router();
 
 apiRoutes
@@ -37,7 +39,8 @@ apiRoutes
   .post('/auth/signup', createUser)
   .post('/auth/signin', authenticate)
 
-  
+  .post('/submit', submitForm)
+
   .get('/auth/logout', logout)
   .get('/auth/current', currentUser)
   
