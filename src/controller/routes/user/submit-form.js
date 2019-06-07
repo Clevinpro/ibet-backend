@@ -18,12 +18,15 @@ const submitForm = async (request, response) => {
     console.log("id:", id.replace('-', ''));
     console.log('my channel id:', dataChat);
 
-    bot.sendMessage(id, `
+    bot.sendMessage(id,
+        `
         name: ${name}
         mail: ${mail}
         feedback: ${feedback}
         country: ${country}
-    `);
+        `
+    );
+
 
 }
 
