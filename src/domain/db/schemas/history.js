@@ -12,9 +12,12 @@ const historySchema = new Schema(
       type: String,
       required: true
     },
-    partner: {
+    partnerID: {
       type: String,
-      required: true
+      ref: 'User'
+    },
+    partnerName: {
+      type: String,
     },
     points: {
       type: Number,
@@ -28,15 +31,7 @@ const historySchema = new Schema(
     betValue: {
       type: String,
       required: true
-    },
-    exitDate: {
-      type: Number,
-      required: true
-    },
-    creatingDate: {
-      type: Number,
-      required: true
-    },
+    }
   },
   {
     timestamps: true
