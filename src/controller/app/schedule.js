@@ -35,12 +35,12 @@ const scheduleRunner = () => {
             if (el.betValue === random) {
               incrementUserPoints(
                 el.userID,
-                Number(+el.points * 0.9).toFixed(2)
+                Number(+el.points * 2 * 0.9).toFixed(2)
               );
             } else {
               incrementUserPoints(
                 el.partnerID,
-                Number(+el.points * 0.9).toFixed(2)
+                Number(+el.points * 2 * 0.9).toFixed(2)
               );
             }
             console.log(el);

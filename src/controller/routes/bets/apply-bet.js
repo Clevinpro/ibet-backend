@@ -62,12 +62,12 @@ const updateBet = (request, response) => {
         if (+newBet.betValue === random) {
           incrementUserPoints(
             newBet.userID,
-            Number(+newBet.points * 0.9).toFixed(2)
+            Number(+newBet.points * 2 * 0.9).toFixed(2)
           );
         } else {
           incrementUserPoints(
             newBet.partnerID,
-            Number(+newBet.points * 0.9).toFixed(2)
+            Number(+newBet.points * 2 *  0.9).toFixed(2)
           );
         }
         const {
