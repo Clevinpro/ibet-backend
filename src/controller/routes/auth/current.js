@@ -33,7 +33,7 @@ const currentUser = (req, response) => {
 
   User.findById(userId)
     .populate('bets')
-    // .populate('history')
+    .populate('history')
     .then(sendResponse)
     .catch(sendError);
 };

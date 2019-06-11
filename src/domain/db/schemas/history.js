@@ -31,6 +31,10 @@ const historySchema = new Schema(
     betValue: {
       type: String,
       required: true
+    },
+    winBet: {
+      type: String,
+      required: true
     }
   },
   {
@@ -40,6 +44,6 @@ const historySchema = new Schema(
 
 historySchema.plugin(timestamp);
 
-const history = mongoose.model('history', historySchema);
+const history = mongoose.model('History', historySchema);
 
 module.exports = history;

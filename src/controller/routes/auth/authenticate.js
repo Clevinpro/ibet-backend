@@ -28,7 +28,7 @@ const authenticate = (req, res) => {
 
   User.findOne(userId)
   .populate('bets')
-  // .populate('history')
+  .populate('history')
   .exec(onFind);
 
   function onFind(err, user) {

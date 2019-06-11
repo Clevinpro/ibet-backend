@@ -20,25 +20,25 @@ const updateBet = (request, response) => {
   };
 
   const decrementUserPoints = (id, points) => {
-    console.log('id____:', id, 'points____:', points)
     User.findById(id).exec(function(err, user) {
-      console.log('success');
-      // if (err) console.log('errr', JSON.stringify(err));
       if (err) return sendError(err);
-      console.log('math',  +user.points - +points);
       user.points = +user.points - +points;
       user.save();
     })
   }
 
   const incrementUserPoints = (id, points) => {
-    console.log('id____:', id, 'points____:', points)
     User.findById(id).exec(function(err, user) {
-      console.log('success');
-      // if (err) console.log('errr', JSON.stringify(err));
       if (err) return sendError(err);
-      console.log('math',  +user.points + +points);
-      user.points = +user.points + +points;
+      user.points = Number(+user.points + +points).toFixed(2);
+      user.save();
+    })
+  }
+
+  const updateUserHistory = (id, historyID) => {
+    User.findById(id).exec(function(err, user) {
+      if (err) return sendError(err);
+      user.history.push(historyID);
       user.save();
     })
   }
@@ -53,21 +53,17 @@ const updateBet = (request, response) => {
     decrementUserPoints(newBet.userID, newBet.points);
     
     let startTime = new Date(newBet.exitDate);
-    let endTime = new Date(newBet.exitDate + 2000);
-    console.log('startTime', startTime);
-    let j = schedule.scheduleJob(
-      { start: startTime, end: endTime },
-      function() {
+    let j = schedule.scheduleJob(startTime, function() {
         const random = randomIntInc(1, 2);
         if (+newBet.betValue === random) {
           incrementUserPoints(
             newBet.userID,
-            Number(+newBet.points * 2 * 0.9).toFixed(2)
+            Number((+newBet.points * 2) * 0.9).toFixed(2)
           );
         } else {
           incrementUserPoints(
             newBet.partnerID,
-            Number(+newBet.points * 2 *  0.9).toFixed(2)
+            Number((+newBet.points * 2) *  0.9).toFixed(2)
           );
         }
         const {
@@ -86,10 +82,16 @@ const updateBet = (request, response) => {
           partnerName,
           points,
           type,
-          betValue
+          betValue,
+          winBet: random,
         };
         const newHistory = new History(history);
-        newHistory.save();
+        newHistory.save().then((hist) => {
+          console.log('hist', hist);
+          const { _id } = hist;
+          updateUserHistory(userID, _id);
+          updateUserHistory(partnerID, _id);
+        });
 
         Bet.findById(newBet._id).remove().then((err) => {
           if(err) console.log(err)
